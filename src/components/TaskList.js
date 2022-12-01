@@ -1,9 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
+import {TASKS as tasks} from "../data"
+import Task from "./Task";
 
 function TaskList() {
+  const [allTasks, setList] = useState(tasks)
+  
+  function handleRemoving(id) {
+    const newList = allTasks.filter((item) => allTasks.indexOf(item) !== id);
+
+    setList(newList);
+  }
+
   return (
     <div className="tasks">
-      {/* display a list of tasks using Task component */}
+       <ul className="Items">
+        {allTasks.map((item, index) => (
+          <Task key={index} text={item.text} category={item.category} id={index} onRemove={handleRemoving} />
+        ))}
+      </ul>
     </div>
   );
 }
