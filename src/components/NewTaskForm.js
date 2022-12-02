@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {CATEGORIES as categories} from "../data"
-import { v4 as uuid } from "uuid";
+
 
 function NewTaskForm({onItemFormSubmit}) {
   const [itemName, handleNameChange] = useState("")
@@ -20,8 +20,7 @@ function NewTaskForm({onItemFormSubmit}) {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = {
-      id: uuid(),
-      name: itemName,
+      text: itemName,
       category: itemCategory
     }
     onItemFormSubmit(formData)
