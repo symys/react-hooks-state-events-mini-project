@@ -1,16 +1,41 @@
-import React from "react";
+import React, {useState} from "react";
 import {CATEGORIES as categories} from "../data"
+import { v4 as uuid } from "uuid";
 
-function NewTaskForm() {
+function NewTaskForm({onItemFormSubmit}) {
+  const [itemName, handleNameChange] = useState("")
+  const [itemCategory, handleCategoryChange] = useState("Produce")
+
+  function handleName(event){
+    const handledName = event.target.value
+    handleNameChange(handledName)
+  }
+
+  function handleCategory(event) {
+    const handledCategory = event.target.value
+    handleCategoryChange(handledCategory)
+  }
+
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = {
+      id: uuid(),
+      name: itemName,
+      category: itemCategory
+    }
+    onItemFormSubmit(formData)
+  }
+
   return (
-    <form className="new-task-form">
+    <form className="new-task-form" onSubmit={handleSubmit}>
       <label>
         Details
-        <input type="text" name="text" />
+        <input type="text" name="text" value={itemName} onChange={handleName} />
       </label>
       <label>
         Category
-        <select name="category">
+        <select name="category" value={itemCategory} onChange={handleCategory}>
           {categories.map((category, i) => {
             return <option key={i} value={category}>{category}</option>
           })}

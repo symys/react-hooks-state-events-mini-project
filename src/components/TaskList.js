@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { TASKS as tasks } from "../data";
 import Task from "./Task";
 
-function TaskList({ selectedCategory }) {
+function TaskList({ selectedCategory, passNewItem }) {
   const [allTasks, setList] = useState(tasks);
 
   function handleRemoving(id) {
     const newList = allTasks.filter((item) => allTasks.indexOf(item) !== id);
 
-    setList(newList);
+    setList(newList)
   }
 
   return (

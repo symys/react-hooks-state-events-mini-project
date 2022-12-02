@@ -9,17 +9,22 @@ console.log({ CATEGORIES, TASKS });
 
 function App() {
   const [dataFromSibling, setData] = useState("All")
+  const [newItemFromSibling, addItem] = useState({})
 
   const handleCategoryFilter = (e) => {
     setData(e.target.value)
+  }
+
+  const waitNewItem = (value) => {
+    addItem(value)
   }
 
   return (
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter showCategoryTasks={handleCategoryFilter}/>
-      <NewTaskForm />
-      <TaskList selectedCategory={dataFromSibling}/>
+      <NewTaskForm onItemFormSubmit={waitNewItem}/>
+      <TaskList selectedCategory={dataFromSibling} passNewItem={newItemFromSibling}/>
     </div>
   );
 }
