@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import {CATEGORIES as categories} from "../data"
 
-function CategoryFilter({showCategoryTasks}) {
-  const [selected, setSelected] = useState(null)
+function CategoryFilter({showCategoryTasks, selectedCategory}) {
+  
 
 
   return (
@@ -10,8 +10,8 @@ function CategoryFilter({showCategoryTasks}) {
       <h5>Category filters</h5>
       {categories.map((category, index) => {
         return <button key={index} type="button" value={category}
-        className={selected !== index ? "" : "selected"} 
-        onClick={(event) => { setSelected(index); showCategoryTasks(event);}} index={index}>
+        className={category === selectedCategory?'selected':''} 
+        onClick={() => {showCategoryTasks(index)}} index={index}>
           {category}
         </button>
       })}
