@@ -12,6 +12,7 @@ function App() {
   const initialTasks = [...tasks]
   const [allTasks, setItems] = useState(initialTasks)
   const [selectedCategory, setSelectedCategory] = useState("All");
+  //const filteredTasks = (selectedCategory === "All") ? TASKS : TASKS.filter(t => t.category === selectedCategory)
 
   
 
@@ -28,8 +29,18 @@ function App() {
       if(i !== currentCategoryIndex) continue
       else returnedCategory = CATEGORIES[i]
     }
-    console.log(returnedCategory)
-    const updatedItems = allTasks.map((task) => task.category === returnedCategory)
+    //console.log(returnedCategory)
+    let updatedItems;
+    if(returnedCategory === "All"){
+      updatedItems = allTasks;
+    }
+    else{
+      const holdAllTasks = allTasks;
+      updatedItems = allTasks.filter((t) => t.category === returnedCategory)
+      console.log(holdAllTasks)
+    }
+
+    //const updatedItems = (returnedCategory === "All") ? allTasks : allTasks.filter(t => t.category === returnedCategory)
     setItems(updatedItems)
     setSelectedCategory(returnedCategory)
   }
@@ -42,7 +53,7 @@ function App() {
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter showCategoryTasks={handleCategoryFilter} selectedCategory={selectedCategory}/>
-      <NewTaskForm onItemFormSubmit={waitNewItem}/>
+      <NewTaskForm onTaskFormSubmit={waitNewItem}/>
       <TaskList allTasks={allTasks} handleRemoving={handleDeleteItem}/>
     </div>
   );

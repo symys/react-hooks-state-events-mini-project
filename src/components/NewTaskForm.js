@@ -2,9 +2,9 @@ import React, {useState} from "react";
 import {CATEGORIES as categories} from "../data"
 
 
-function NewTaskForm({onItemFormSubmit}) {
+function NewTaskForm({onTaskFormSubmit}) {
   const [itemName, handleNameChange] = useState("")
-  const [itemCategory, handleCategoryChange] = useState("Produce")
+  const [itemCategory, handleCategoryChange] = useState("No Category?")
 
   function handleName(event){
     const handledName = event.target.value
@@ -23,7 +23,7 @@ function NewTaskForm({onItemFormSubmit}) {
       text: itemName,
       category: itemCategory
     }
-    onItemFormSubmit(formData)
+    onTaskFormSubmit(formData);
   }
 
   return (
