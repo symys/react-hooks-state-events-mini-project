@@ -10,6 +10,7 @@ function TaskList({allTasks, handleRemoving}) {
 
   //   deleteTask(newList)
   // }
+  //console.log(allTasks)
 
   return (
     <div className="tasks">

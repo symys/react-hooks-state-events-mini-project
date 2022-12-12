@@ -1,7 +1,7 @@
 import React from "react";
 import {CATEGORIES as categories} from "../data"
 
-function CategoryFilter({showCategoryTasks, selectedCategory}) {
+function CategoryFilter({setSelectedCategory, selectedCategory}) {
   
 
 
@@ -11,7 +11,7 @@ function CategoryFilter({showCategoryTasks, selectedCategory}) {
       {categories.map((category, index) => {
         return <button key={index} type="button" value={category}
         className={category === selectedCategory?'selected':''} 
-        onClick={() => {showCategoryTasks(index)}} index={index}>
+        onClick={() => {setSelectedCategory(category)}} index={index}>
           {category}
         </button>
       })}
